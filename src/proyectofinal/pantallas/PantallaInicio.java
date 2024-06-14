@@ -4,6 +4,8 @@
  */
 package proyectofinal.pantallas;
 
+import proyectofinal.ProyectoFinal;
+
 /**
  *
  * @author Leo
@@ -84,9 +86,16 @@ public class PantallaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnContactosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContactosActionPerformed
-        PantallaContactos contactos = new PantallaContactos();
-        contactos.setVisible(true);
-        contactos.setLocationRelativeTo(null);
+        if (!ProyectoFinal.listaContactosGlobal.isEmpty()){
+            PantallaContactos contactos = new PantallaContactos(ProyectoFinal.listaContactosGlobal);
+            contactos.setVisible(true);
+            contactos.setLocationRelativeTo(null);
+        }
+        else{
+            PantallaContactos contactos = new PantallaContactos();
+            contactos.setVisible(true);
+            contactos.setLocationRelativeTo(null);
+        }
     }//GEN-LAST:event_btnContactosActionPerformed
 
     /**
