@@ -61,7 +61,7 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtGuardar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
@@ -75,10 +75,10 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
 
         jLabel3.setText("Apellido:");
 
-        txtGuardar.setText("Guardar ");
-        txtGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar ");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGuardarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -99,7 +99,7 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtGuardar))
+                        .addComponent(btnGuardar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -129,7 +129,7 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGuardar)
+                    .addComponent(btnGuardar)
                     .addComponent(btnCancelar))
                 .addGap(27, 27, 27))
         );
@@ -141,7 +141,7 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         obtenerValoresContacto();
         if (edit){
             padre.actualizarContacto(this.contacto);
@@ -151,7 +151,7 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
         }
         this.setVisible(false);
         padre.setVisible(true);
-    }//GEN-LAST:event_txtGuardarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,11 +190,11 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JButton txtGuardar;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables

@@ -1,10 +1,12 @@
 
 package proyectofinal.pantallas;
 import javax.swing.JOptionPane;
-import proyectofinal.ProyectoFinal;
+import proyectofinal.entidades.Usuario;
 
 public class Login extends javax.swing.JFrame {
 
+    private Usuario usuario = new Usuario("leomontalvo", "montalvo");
+    
     public Login() {
         initComponents();
     }
@@ -99,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         char[] pass = txtPassword.getPassword();
         String Stringpass = new String(pass);
         
-        if (user.equals(ProyectoFinal.usuario) && Stringpass.equals(ProyectoFinal.password)){
+        if (user.equals(usuario.getUser()) && Stringpass.equals(usuario.getPassword())){
             PantallaInicio pantalla = new PantallaInicio();
             pantalla.setVisible(true);
             pantalla.setLocationRelativeTo(null);

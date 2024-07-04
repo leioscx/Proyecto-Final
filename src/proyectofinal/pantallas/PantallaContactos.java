@@ -26,7 +26,7 @@ public class PantallaContactos extends javax.swing.JFrame {
     public PantallaContactos(List<Persona> lista){
         initComponents();
         listaContactos.setModel(modelo);
-        actualizarLista();
+        actualizarLista();  
     }
 
     /**

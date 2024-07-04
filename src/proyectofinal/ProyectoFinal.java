@@ -9,8 +9,6 @@ import proyectofinal.pantallas.Login;
 public class ProyectoFinal {
 
     public static List<Persona> listaContactosGlobal = new ArrayList<>();
-    public static String usuario = "leomontalvo";
-    public static String password = "montalvo";
 
     public static void main(String[] args) {
         
