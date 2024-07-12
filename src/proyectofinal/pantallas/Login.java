@@ -1,11 +1,13 @@
 
 package proyectofinal.pantallas;
+
 import javax.swing.JOptionPane;
 import proyectofinal.entidades.Usuario;
+import proyectofinal.entidades.UsuarioDAO;
 
 public class Login extends javax.swing.JFrame {
 
-    private Usuario usuario = new Usuario("leomontalvo", "montalvo");
+    //private Usuario usuario = new Usuario("leomontalvo", "montalvo");
     
     public Login() {
         initComponents();
@@ -27,6 +29,7 @@ public class Login extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnEnter = new javax.swing.JButton();
         btnQuit = new javax.swing.JButton();
+        btnRegistrarse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +54,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,10 +68,6 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnQuit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEnter))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,7 +77,15 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnQuit)
+                .addGap(12, 12, 12)
+                .addComponent(btnRegistrarse)
+                .addGap(18, 18, 18)
+                .addComponent(btnEnter)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +103,8 @@ public class Login extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEnter)
-                    .addComponent(btnQuit))
+                    .addComponent(btnQuit)
+                    .addComponent(btnRegistrarse))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -98,23 +113,36 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         String user = txtUser.getText();
-        char[] pass = txtPassword.getPassword();
-        String Stringpass = new String(pass);
+        String pass = new String(txtPassword.getPassword());
         
-        if (user.equals(usuario.getUser()) && Stringpass.equals(usuario.getPassword())){
+        Usuario usuario = new Usuario();
+        usuario.setUser(user);
+        usuario.setPassword(pass);
+        
+        UsuarioDAO dao = new UsuarioDAO(usuario);
+        boolean valido = dao.login();
+        
+        if (valido){
             PantallaInicio pantalla = new PantallaInicio();
             pantalla.setVisible(true);
             pantalla.setLocationRelativeTo(null);
             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "El usuario o contraseña no son válidos. Intente nuevamente", "Opsss", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña inválidos, intente nuevamente", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
+        
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnQuitActionPerformed
+
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        RegistroNuevoUsuario pantallaRegistro = new RegistroNuevoUsuario();
+        pantallaRegistro.setVisible(true);
+        pantallaRegistro.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     
     public static void main(String args[]) {
@@ -152,6 +180,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnter;
     private javax.swing.JButton btnQuit;
+    private javax.swing.JButton btnRegistrarse;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

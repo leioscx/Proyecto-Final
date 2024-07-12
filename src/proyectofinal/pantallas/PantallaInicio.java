@@ -4,7 +4,12 @@
  */
 package proyectofinal.pantallas;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import javax.swing.JOptionPane;
 import proyectofinal.ProyectoFinal;
+import static proyectofinal.ProyectoFinal.ACCOUNT_SID;
+import static proyectofinal.ProyectoFinal.AUTH_TOKEN;
 
 /**
  *
@@ -36,6 +41,11 @@ public class PantallaInicio extends javax.swing.JFrame {
 
         btnEmergencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEmergencia.setText("¡EMERGENCIA!");
+        btnEmergencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmergenciaActionPerformed(evt);
+            }
+        });
 
         btnContactos.setText("Contactos");
         btnContactos.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +107,20 @@ public class PantallaInicio extends javax.swing.JFrame {
             contactos.setLocationRelativeTo(null);
         }
     }//GEN-LAST:event_btnContactosActionPerformed
+
+    private void btnEmergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmergenciaActionPerformed
+        // TODO add your handling code here:
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message =
+                Message.creator(
+                               new com.twilio.type.PhoneNumber("+51904317966"),
+                               new com.twilio.type.PhoneNumber("+19124201287"),
+                               "ESTE ES UN MENSAJE DE EMERGENCIA")
+                        .create();
+
+        System.out.println(message.getBody());
+        JOptionPane.showMessageDialog(null, "Alerta enviada. " + message.getSid());
+    }//GEN-LAST:event_btnEmergenciaActionPerformed
 
     /**
      * @param args the command line arguments
