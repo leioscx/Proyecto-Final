@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package proyectofinal.pantallas;
 
+import javax.swing.JOptionPane;
 import proyectofinal.entidades.Persona;
 
 /**
@@ -21,32 +19,40 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
     }
     
     public PantallaEditarContacto(PantallaContactos padre){
+        
         initComponents();
         this.padre = padre;
         edit = false;
+        
     }
     
     public PantallaEditarContacto(PantallaContactos padre, Persona contacto){
+        
         initComponents();
         this.padre = padre;
         this.contacto = contacto;
         edit = true;
         setValoresContacto();
+        
     }
     
     private void setValoresContacto(){
+        
         txtNombre.setText(this.contacto.getNombre());
         txtApellido.setText(this.contacto.getApellido());
         txtTelefono.setText(this.contacto.getTelefono());
+        
     }
     
     private void obtenerValoresContacto(){
+        
         if (!edit){
             this.contacto = new Persona();
         }
         this.contacto.setNombre(txtNombre.getText());
         this.contacto.setApellido(txtApellido.getText());
         this.contacto.setTelefono(txtTelefono.getText());
+        
     }
 
     /**
@@ -142,15 +148,20 @@ public class PantallaEditarContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
         obtenerValoresContacto();
-        if (edit){
-            padre.actualizarContacto(this.contacto);
+        if (txtTelefono.getText().length() == 9){
+            if (edit) {
+                padre.actualizarContacto(this.contacto);
+            } else {
+                padre.agregarContacto(this.contacto);
+            }
+            this.setVisible(false);
+            padre.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "El número ingresado no es válido", "Opsss", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            padre.agregarContacto(this.contacto);
-        }
-        this.setVisible(false);
-        padre.setVisible(true);
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**

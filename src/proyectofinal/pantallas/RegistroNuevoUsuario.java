@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package proyectofinal.pantallas;
 
 import javax.swing.JOptionPane;
@@ -13,10 +10,6 @@ import proyectofinal.entidades.UsuarioDAO;
  * @author Leo
  */
 public class RegistroNuevoUsuario extends javax.swing.JFrame {
-
-    /**
-     * Creates new form RegistroNuevoUsuario
-     */
     
     private Usuario user;
     
@@ -122,14 +115,18 @@ public class RegistroNuevoUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        
         this.dispose();
+        
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        
         this.obtenerDatos(this.user);
         this.registrarUsuario(this.user);
         JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
@@ -168,14 +165,18 @@ public class RegistroNuevoUsuario extends javax.swing.JFrame {
     }
     
     public void obtenerDatos(Usuario usuario){
+        
         usuario.setNombre(txtRegName.getText());
         usuario.setUser(txtRegUser.getText());
         usuario.setPassword(txtRegPass.getText());
+        
     }
     
     public void registrarUsuario (Usuario newUser){
+        
         UsuarioDAO dao = new UsuarioDAO(newUser);
         dao.registrar();
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

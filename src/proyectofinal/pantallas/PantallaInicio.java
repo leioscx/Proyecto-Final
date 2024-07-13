@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package proyectofinal.pantallas;
 
 import com.twilio.Twilio;
@@ -10,6 +7,7 @@ import javax.swing.JOptionPane;
 import proyectofinal.ProyectoFinal;
 import static proyectofinal.ProyectoFinal.ACCOUNT_SID;
 import static proyectofinal.ProyectoFinal.AUTH_TOKEN;
+import proyectofinal.entidades.Persona;
 
 /**
  *
@@ -17,9 +15,6 @@ import static proyectofinal.ProyectoFinal.AUTH_TOKEN;
  */
 public class PantallaInicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PantallaInicio
-     */
     public PantallaInicio() {
         initComponents();
     }
@@ -89,13 +84,16 @@ public class PantallaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        
         this.dispose();
         Login login = new Login();
         login.setVisible(true);
         login.setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnContactosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContactosActionPerformed
+        
         if (!ProyectoFinal.listaContactosGlobal.isEmpty()){
             PantallaContactos contactos = new PantallaContactos(ProyectoFinal.listaContactosGlobal);
             contactos.setVisible(true);
@@ -106,20 +104,24 @@ public class PantallaInicio extends javax.swing.JFrame {
             contactos.setVisible(true);
             contactos.setLocationRelativeTo(null);
         }
+        
     }//GEN-LAST:event_btnContactosActionPerformed
 
     private void btnEmergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmergenciaActionPerformed
-        // TODO add your handling code here:
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message =
-                Message.creator(
-                               new com.twilio.type.PhoneNumber("+51904317966"),
-                               new com.twilio.type.PhoneNumber("+19124201287"),
-                               "ESTE ES UN MENSAJE DE EMERGENCIA")
-                        .create();
+        
+        if (proyectofinal.ProyectoFinal.listaContactosGlobal.size() > 0){
+            for (Persona per : proyectofinal.ProyectoFinal.listaContactosGlobal) {
+                Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+                Message message = Message.creator(new com.twilio.type.PhoneNumber("+51" + per.getTelefono()), new com.twilio.type.PhoneNumber("+19124201287"), "ESTE ES UN MENSAJE DE EMERGENCIA").create();
 
-        System.out.println(message.getBody());
-        JOptionPane.showMessageDialog(null, "Alerta enviada. " + message.getSid());
+                System.out.println(message.getBody());
+            }
+
+            JOptionPane.showMessageDialog(null, "Alerta enviada");
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay contactos registrados!", "Opsss", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnEmergenciaActionPerformed
 
     /**

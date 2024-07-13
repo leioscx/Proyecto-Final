@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package proyectofinal.pantallas;
 
 import java.util.List;
@@ -124,12 +121,15 @@ public class PantallaContactos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+       
         PantallaEditarContacto pantallaAgregar = new PantallaEditarContacto(this);
         pantallaAgregar.setVisible(true);
         pantallaAgregar.setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
         int index = listaContactos.getSelectedIndex();
         if (index > -1){
             Persona pe = ProyectoFinal.listaContactosGlobal.get(index);
@@ -137,9 +137,11 @@ public class PantallaContactos extends javax.swing.JFrame {
             pantallaEditar.setVisible(true);
             pantallaEditar.setLocationRelativeTo(null);
         }
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        
         int index = listaContactos.getSelectedIndex();
         if (index > -1){
             Persona pe = ProyectoFinal.listaContactosGlobal.get(index);
@@ -149,10 +151,13 @@ public class PantallaContactos extends javax.swing.JFrame {
             }
             actualizarLista();
         }
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        
         this.setVisible(false);
+        
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     /**
@@ -201,13 +206,16 @@ public class PantallaContactos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void actualizarLista(){
+        
         modelo.clear();
         for (Persona pe : ProyectoFinal.listaContactosGlobal){
-            modelo.addElement(pe.getNombre());
+            modelo.addElement(pe.getTexto());
         }
+        
     }
     
     void actualizarContacto(Persona contacto) {
+        
         for (int i = 0; i < ProyectoFinal.listaContactosGlobal.size(); i++){
             Persona pe = ProyectoFinal.listaContactosGlobal.get(i);
             if (pe.hashCode() == contacto.hashCode()){
@@ -215,10 +223,13 @@ public class PantallaContactos extends javax.swing.JFrame {
             }
         }
         actualizarLista();
+        
     }
 
     void agregarContacto(Persona contacto) {
+       
        ProyectoFinal.listaContactosGlobal.add(contacto);
        actualizarLista();
+       
     }
 }

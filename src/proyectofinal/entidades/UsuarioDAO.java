@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyectofinal.entidades;
 
 import java.sql.Connection;
@@ -48,6 +45,7 @@ public class UsuarioDAO {
     }
     
     public boolean login(){
+        
         Connection connection = DbConexion.getConnection();
         String selectSQL = "SELECT * FROM db_usuarios WHERE usuario = ? AND password = ?";
         try {
@@ -78,6 +76,6 @@ public class UsuarioDAO {
                 ex.printStackTrace();
             }
         }
-        return false;
+        return false;   
     }
 }

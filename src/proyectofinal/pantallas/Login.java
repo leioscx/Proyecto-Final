@@ -7,8 +7,6 @@ import proyectofinal.entidades.UsuarioDAO;
 
 public class Login extends javax.swing.JFrame {
 
-    //private Usuario usuario = new Usuario("leomontalvo", "montalvo");
-    
     public Login() {
         initComponents();
     }
@@ -112,6 +110,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
+        
         String user = txtUser.getText();
         String pass = new String(txtPassword.getPassword());
         
@@ -130,18 +129,21 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "El usuario o contraseña no son válidos. Intente nuevamente", "Opsss", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+          
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
+        
         System.exit(0);
+        
     }//GEN-LAST:event_btnQuitActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        
         RegistroNuevoUsuario pantallaRegistro = new RegistroNuevoUsuario();
         pantallaRegistro.setVisible(true);
         pantallaRegistro.setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     
